@@ -14,6 +14,7 @@ app.use(express.json());
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   next();
 });
 
@@ -66,7 +67,7 @@ app.post('/api/order', async (req, res) => {
     // Запись обновленных заказов в файл
     await writeFile(ORDERS_FILE, JSON.stringify(orders));
 
-    res.json({ message: 'Order placed successfully' });
+    res.json({ message: 'Спасибо за заказ!' });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Internal Server Error' });
